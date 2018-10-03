@@ -158,7 +158,7 @@ namespace RayTracer.Core.Tests.Tuples
         [MemberData("MagnitudeFixture")]
         public void Magnitude(Tuple t, double expectedMagnitude)
         {
-            var mag = t.Magnitude;
+            var mag = t.Magnitude();
 
             Assert.Equal(expectedMagnitude, mag);
         }
@@ -185,7 +185,7 @@ namespace RayTracer.Core.Tests.Tuples
              var v = Tuple.CreateVector(1, 2, 3);
              var norm = v.Normalize();
 
-             Assert.Equal(1d, norm.Magnitude);
+             Assert.Equal(1d, norm.Magnitude());
          }
 
          [Fact]

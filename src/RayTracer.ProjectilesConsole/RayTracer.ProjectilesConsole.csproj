@@ -5,4 +5,8 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\RayTracer.Core\RayTracer.Core.csproj" />
+  </ItemGroup>
+  
 </Project>

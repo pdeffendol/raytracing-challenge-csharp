@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A317D328-5941-46A0-930D-F923AF08C72D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer.App", "src\RayTracer.App\RayTracer.App.csproj", "{F7C154CB-095E-40E5-8DD3-01467D66FBC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer.ProjectilesConsole", "src\RayTracer.ProjectilesConsole\RayTracer.ProjectilesConsole.csproj", "{F7C154CB-095E-40E5-8DD3-01467D66FBC2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{EBF58C95-FBE7-436C-8ED4-8EA265D5F38A}"
 EndProject
