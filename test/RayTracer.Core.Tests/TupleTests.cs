@@ -1,11 +1,61 @@
 using Xunit;
-using RayTracer.Core.Tuples;
+using RayTracer.Core;
 using System.Collections.Generic;
 
-namespace RayTracer.Core.Tests.Tuples
+namespace RayTracer.Core.Tests
 {
-    public class Operations
+    public class TupleTests
     {
+        [Fact]
+        public void TupleWithW1IsAPoint()
+        {
+            Tuple t = new Tuple(4.3, -4.2, 3.1, 1.0);
+
+            Assert.Equal(4.3, t.X);
+            Assert.Equal(-4.2, t.Y);
+            Assert.Equal(3.1, t.Z);
+            Assert.Equal(1.0, t.W);
+            Assert.True(t.IsPoint());
+            Assert.False(t.IsVector());
+        }
+
+        [Fact]
+        public void TupleWithW0IsAVector()
+        {
+            Tuple t = new Tuple(4.3, -4.2, 3.1, 0.0);
+
+            Assert.Equal(4.3, t.X);
+            Assert.Equal(-4.2, t.Y);
+            Assert.Equal(3.1, t.Z);
+            Assert.Equal(0.0, t.W);
+            Assert.False(t.IsPoint());
+            Assert.True(t.IsVector());
+        }
+
+        [Fact]
+        public void CreatePoint_CreatesTuplesWithW1()
+        {
+            var point = Tuple.CreatePoint(4, -4, 3);
+            var tuple = new Tuple(4, -4, 3, 1);
+
+            Assert.Equal(tuple.X, point.X);
+            Assert.Equal(tuple.Y, point.Y);
+            Assert.Equal(tuple.Z, point.Z);
+            Assert.Equal(tuple.W, point.W);
+        }
+
+        [Fact]
+        public void CreateVector_CreatesTuplesWithW0()
+        {
+            var point = Tuple.CreateVector(4, -4, 3);
+            var tuple = new Tuple(4, -4, 3, 0);
+
+            Assert.Equal(tuple.X, point.X);
+            Assert.Equal(tuple.Y, point.Y);
+            Assert.Equal(tuple.Z, point.Z);
+            Assert.Equal(tuple.W, point.W);
+        }
+
         [Fact]
         public void Equality_TrueIfValuesEqual()
         {
@@ -19,7 +69,7 @@ namespace RayTracer.Core.Tests.Tuples
         public void Equals_TrueIfValuesClose()
         {
             var t1 = new Tuple(0.33333, -2, 5, 1);
-            var t2 = new Tuple(1d/3d, -2, 5, 1);
+            var t2 = new Tuple(1d / 3d, -2, 5, 1);
 
             Assert.True(t1.Equals(t2));
         }
@@ -164,50 +214,50 @@ namespace RayTracer.Core.Tests.Tuples
         }
 
         public static IEnumerable<object[]> NormalizeFixture =>
-         new List<object[]>
-         {
-             new object[] { Tuple.CreateVector(4, 0, 0), Tuple.CreateVector(1, 0, 0) },
-             new object[] { Tuple.CreateVector(1, 2, 3), Tuple.CreateVector(0.26726, 0.53452, 0.80178) },
-         };
+            new List<object[]>
+            {
+                new object[] { Tuple.CreateVector(4, 0, 0), Tuple.CreateVector(1, 0, 0) },
+                new object[] { Tuple.CreateVector(1, 2, 3), Tuple.CreateVector(0.26726, 0.53452, 0.80178) },
+            };
 
-         [Theory]
-         [MemberData("NormalizeFixture")]
-         public void Normalize_GivesUnitVectors(Tuple t, Tuple expectedNormalized)
-         {
-             var norm = t.Normalize();
+        [Theory]
+        [MemberData("NormalizeFixture")]
+        public void Normalize_GivesUnitVectors(Tuple t, Tuple expectedNormalized)
+        {
+            var norm = t.Normalize();
 
-             Assert.True(norm.Equals(expectedNormalized));
-         }
+            Assert.True(norm.Equals(expectedNormalized));
+        }
 
-         [Fact]
-         public void Magnitude_OfNormalizedVector_IsOne()
-         {
-             var v = Tuple.CreateVector(1, 2, 3);
-             var norm = v.Normalize();
+        [Fact]
+        public void Magnitude_OfNormalizedVector_IsOne()
+        {
+            var v = Tuple.CreateVector(1, 2, 3);
+            var norm = v.Normalize();
 
-             Assert.Equal(1d, norm.Magnitude());
-         }
+            Assert.Equal(1d, norm.Magnitude());
+        }
 
-         [Fact]
-         public void Dot_ProducesDotProduct()
-         {
-             var a = Tuple.CreateVector(1, 2, 3);
-             var b = Tuple.CreateVector(2, 3, 4);
+        [Fact]
+        public void Dot_ProducesDotProduct()
+        {
+            var a = Tuple.CreateVector(1, 2, 3);
+            var b = Tuple.CreateVector(2, 3, 4);
 
-             Assert.Equal(20, a.Dot(b));
-         }
+            Assert.Equal(20, a.Dot(b));
+        }
 
-         [Fact]
-         public void Cross_ProducesCrossProduct()
-         {
-             var a = Tuple.CreateVector(1, 2, 3);
-             var b = Tuple.CreateVector(2, 3, 4);
+        [Fact]
+        public void Cross_ProducesCrossProduct()
+        {
+            var a = Tuple.CreateVector(1, 2, 3);
+            var b = Tuple.CreateVector(2, 3, 4);
 
-             var ab = Tuple.CreateVector(-1, 2, -1);
-             var ba = Tuple.CreateVector(1, -2, 1);
+            var ab = Tuple.CreateVector(-1, 2, -1);
+            var ba = Tuple.CreateVector(1, -2, 1);
 
-             Assert.True(a.Cross(b).Equals(ab));
-             Assert.True(b.Cross(a).Equals(ba));
-         }
+            Assert.True(a.Cross(b).Equals(ab));
+            Assert.True(b.Cross(a).Equals(ba));
+        }
     }
 }

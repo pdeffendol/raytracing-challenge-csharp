@@ -1,4 +1,4 @@
-using RayTracer.Core.Tuples;
+using RayTracer.Core;
 
 namespace RayTracer.ProjectilesConsole
 {

@@ -1,6 +1,6 @@
 using System;
 
-namespace RayTracer.Core.Tuples
+namespace RayTracer.Core
 {
     public class Tuple
     {
