@@ -27,16 +27,10 @@ namespace RayTracer.Core
 
         public bool Equals(Tuple other)
         {
-            bool ReasonablyEqual(double d1, double d2)
-            {
-                const double EPSILON = 0.00001;
-                return Math.Abs(d1 - d2) < EPSILON;
-            }
-
-            return ReasonablyEqual(this.X, other.X)
-                && ReasonablyEqual(this.Y, other.Y)
-                && ReasonablyEqual(this.Z, other.Z)
-                && ReasonablyEqual(this.W, other.W);
+            return DoubleComparer.Equal(this.X, other.X)
+                && DoubleComparer.Equal(this.Y, other.Y)
+                && DoubleComparer.Equal(this.Z, other.Z)
+                && DoubleComparer.Equal(this.W, other.W);
         }
 
         public static Tuple operator +(Tuple t1, Tuple t2) => new Tuple(

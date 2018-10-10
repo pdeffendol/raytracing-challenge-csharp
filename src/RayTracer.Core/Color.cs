@@ -17,15 +17,9 @@ namespace RayTracer.Core
 
         public bool Equals(Color other)
         {
-            bool ReasonablyEqual(double d1, double d2)
-            {
-                const double EPSILON = 0.00001;
-                return Math.Abs(d1 - d2) < EPSILON;
-            }
-
-            return ReasonablyEqual(this.Red, other.Red)
-                && ReasonablyEqual(this.Green, other.Green)
-                && ReasonablyEqual(this.Blue, other.Blue);
+            return DoubleComparer.Equal(this.Red, other.Red)
+                && DoubleComparer.Equal(this.Green, other.Green)
+                && DoubleComparer.Equal(this.Blue, other.Blue);
         }
 
         public static Color operator +(Color c1, Color c2) => new Color(
