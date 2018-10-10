@@ -25,6 +25,17 @@ namespace RayTracer.Core
             _matrix = matrixArray;
         }
 
+        public static Matrix Identity(int size)
+        {
+            var m = new Matrix(size, size);
+            for (int i = 0; i < size; i++)
+            {
+                m[i,i] = 1;
+            }
+
+            return m;
+        }
+
         public double Get(int row, int col)
         {
             return _matrix[row, col];
@@ -119,6 +130,21 @@ namespace RayTracer.Core
                 + tuple.Z * matrix[3,2]
                 + tuple.W * matrix[3,3]
             );
+        }
+
+        public Matrix Transpose()
+        {
+            var m = new Matrix(this.Columns, this.Rows);
+
+            for (int r = 0; r < this.Rows; r++)
+            {
+                for (int c = 0; c < this.Columns; c++)
+                {
+                    m[c,r] = this[r,c];
+                }
+            }
+
+            return m;
         }
     }
 }
