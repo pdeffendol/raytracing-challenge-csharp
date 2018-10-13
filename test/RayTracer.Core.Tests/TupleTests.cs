@@ -205,7 +205,7 @@ namespace RayTracer.Core.Tests
             };
 
         [Theory]
-        [MemberData("MagnitudeFixture")]
+        [MemberData(nameof(MagnitudeFixture))]
         public void Magnitude(Tuple t, double expectedMagnitude)
         {
             var mag = t.Magnitude();
@@ -221,7 +221,7 @@ namespace RayTracer.Core.Tests
             };
 
         [Theory]
-        [MemberData("NormalizeFixture")]
+        [MemberData(nameof(NormalizeFixture))]
         public void Normalize_GivesUnitVectors(Tuple t, Tuple expectedNormalized)
         {
             var norm = t.Normalize();
